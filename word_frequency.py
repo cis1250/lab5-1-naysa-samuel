@@ -24,3 +24,32 @@ def is_sentence(text):
         return False
 
     return True
+
+def get_sentence():
+    while True:
+        text = input("Please enter a sentence: ")
+        if is_sentence(text):
+            return text
+        else:
+            print("Error: Invalid sentence. Please try again.")
+
+def compute_word_frequencies(sentence):
+    # Remove punctuation and convert to lowercase
+    words = re.findall(r'\b\w+\b', sentence.lower())
+    frequency = {}
+    for word in words:
+        frequency[word] = frequency.get(word, 0) + 1
+    return frequency
+
+def print_word_frequencies(frequency):
+    print("Word Frequencies:")
+    for word, count in frequency.items():
+        print(f"{word}: {count}")
+
+def main():
+    sentence = get_sentence()
+    frequency = compute_word_frequencies(sentence)
+    print_word_frequencies(frequency)
+
+if __name__ == "__main__":
+    main()
